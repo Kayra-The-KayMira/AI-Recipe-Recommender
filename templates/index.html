@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width = device-width, initial-scale = 1.0">
+    <title>AI Recipe Recommender</title>
+</head>
+<body>
+    <h1>AI Recipe Recommender</h1>
+
+    <p>Enter the ingredients you have, separated by commas.</p>
+
+    <form method="POST">
+        <input
+            type = "text"
+            name = "ingredients"
+            placeholder = "egg, cheese, tomato"
+            value = "{{ ingredients_input}}"
+            required
+        >
+        <button type = "submit">Find Recipes</button>
+    </form>
+
+    {% if recipes %}
+        <h2>Recommended Recipes</h2>
+
+        {% for recipe in recipes %}
+            <article>
+                <h3>{{ recipe.name }}</h3>
+
+                <p>
+                    Cooking time:
+                    {{ recipe.cooking_time }} minutes
+                </p>
+
+                <p>{{ recipe.instructions }}</p>
+
+                <p>
+                    Matching ingredients:
+                    {{ recipe.matching_ingredients | join(",") }}
+                </p>
+                 
+                {% if recipe.missing_ingredients %}
+                    <p>
+                        Missing ingredients:
+                        {{ recipe.missing_ingredients | join(",") }}
+                    </p>
+                {% else %}
+                    <p>You have all the ingredients!</p>
+                {% endif %}
+            </article>
+            <hr>
+        {% endfor %}
+
+    {% elif ingredients_input %}
+        <p>No matching recipes found. Try different ingredients.</p>
+    {% endif %}
+</body>
+</html>
