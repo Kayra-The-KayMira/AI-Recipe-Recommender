@@ -25,11 +25,28 @@ RECIPES = [
     }
 ]
 def recommend_recipes(user_ingredients, max_cooking_time = None):
+
+    if not isinstance(user_ingredients, (list, tuple, set)):
+        return[]
+
+    if not isinstance(max_cooking_time, (int, float)):
+        return[]
+
+    if max_cooking_time is not None:
+        if not isinstance(max_cooking_time, (int, float)):
+            return[]
+
+        if max_cooking_time < 0:
+            return[]
+    
     user_ingredients = {
         ingredient.strip().lower()
         for ingredient in user_ingredients
-        if ingredient.strip()
+        if isinstance(ingredient, str) and ingredient.strip()
     }
+
+    if not user_ingredients:
+        return[]
 
     recommendations = []
 
@@ -75,9 +92,9 @@ def recommend_recipes(user_ingredients, max_cooking_time = None):
     return recommendations
 
 if __name__ == "__main__":
-    test_ingredients = ["egg", "tomato"]
+    test_ingredients = ["egg", 123, None, "cheese", "", "  "]
 
-    result = recommend_recipes(test_ingredients, max_cooking_time = 10)
+    result = recommend_recipes(test_ingredients, max_cooking_time = True)
 
     for recipe in result:
         print(f"Recipe: {recipe['name']}")
