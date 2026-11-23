@@ -55,14 +55,16 @@ def recommend_recipes(user_ingredients):
                 "matching_ingredients": sorted(matching_ingredients),
                 "missing_ingredients": sorted(missing_ingredients),
                 "match_count": len(matching_ingredients),
-                "match_percentage": round(match_percentage, 2)
+                "match_percentage": round(match_percentage, 2),
+                "is_complete": len(missing_ingredients) == 0
             })
 
     recommendations.sort(
         key = lambda recipe: (
             -recipe["match_count"],
             -recipe["match_percentage"],
-            len(recipe["missing_ingredients"])
+            len(recipe["missing_ingredients"]),
+            recipe["cooking_time"]
         )
     )
 
@@ -78,4 +80,5 @@ if __name__ == "__main__":
         print(f"Match: {recipe['match_percentage']}%")
         print(f"Matching ingredients: {recipe['matching_ingredients']}")
         print(f"Missing ingredients: {recipe['missing_ingredients']}")
+        print(f"Can cook now: {recipe['is_complete']}")
         print("-" * 30)
