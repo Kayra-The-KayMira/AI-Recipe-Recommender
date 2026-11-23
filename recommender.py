@@ -34,24 +34,48 @@ def recommend_recipes(user_ingredients):
     recommendations = []
 
     for recipe in RECIPES:
-        recipe_ingredients = set(recipe["ingredients"])
+
+        recipe_ingredients = {
+            ingredient.strip().lower()
+            for ingredient in recipe['ingredients']
+        }
+
         matching_ingredients = user_ingredients.intersection(
             recipe_ingredients
         )
 
+        missing_ingredients = recipe_ingredients - user_ingredients
+
         if matching_ingredients:
+
+            match_percentage = (len(matching_ingredients) / len(recipe_ingredients)) * 100
+
             recommendations.append({
                 **recipe,
                 "matching_ingredients": sorted(matching_ingredients),
-                "missing_ingredients": sorted(recipe_ingredients - user_ingredients),
-                "match_count": len(matching_ingredients)
+                "missing_ingredients": sorted(missing_ingredients),
+                "match_count": len(matching_ingredients),
+                "match_percentage": round(match_percentage, 2)
             })
 
     recommendations.sort(
         key = lambda recipe: (
             -recipe["match_count"],
+            -recipe["match_percentage"],
             len(recipe["missing_ingredients"])
         )
     )
 
     return recommendations
+
+if __name__ == "__main__":
+    test_ingredients = ["egg", "tomato"]
+
+    result = recommend_recipes(test_ingredients)
+
+    for recipe in result:
+        print(f"Recipe: {recipe['name']}")
+        print(f"Match: {recipe['match_percentage']}%")
+        print(f"Matching ingredients: {recipe['matching_ingredients']}")
+        print(f"Missing ingredients: {recipe['missing_ingredients']}")
+        print("-" * 30)
