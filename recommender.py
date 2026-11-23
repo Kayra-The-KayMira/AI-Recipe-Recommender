@@ -24,7 +24,7 @@ RECIPES = [
         "cooking_time": 5
     }
 ]
-def recommend_recipes(user_ingredients):
+def recommend_recipes(user_ingredients, max_cooking_time = None):
     user_ingredients = {
         ingredient.strip().lower()
         for ingredient in user_ingredients
@@ -34,6 +34,10 @@ def recommend_recipes(user_ingredients):
     recommendations = []
 
     for recipe in RECIPES:
+
+        if max_cooking_time is not None:
+            if recipe["cooking_time"] > max_cooking_time:
+                continue
 
         recipe_ingredients = {
             ingredient.strip().lower()
@@ -73,7 +77,7 @@ def recommend_recipes(user_ingredients):
 if __name__ == "__main__":
     test_ingredients = ["egg", "tomato"]
 
-    result = recommend_recipes(test_ingredients)
+    result = recommend_recipes(test_ingredients, max_cooking_time = 10)
 
     for recipe in result:
         print(f"Recipe: {recipe['name']}")
