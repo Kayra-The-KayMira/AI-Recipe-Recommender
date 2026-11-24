@@ -1,0 +1,166 @@
+
+[
+  {
+    "name": "Cheese Omelette",
+    "ingredients": ["egg", "cheese"],
+    "instructions": "Beat the eggs, add cheese, and cook in a pan.",
+    "cooking_time": 10,
+    "category": "Breakfast",
+    "servings": 1
+  },
+  {
+    "name": "Tomato Pasta",
+    "ingredients": ["tomato", "pasta"],
+    "instructions": "Cook the pasta. Prepare a tomato sauce and mix them.",
+    "cooking_time": 20,
+    "category": "Main Course",
+    "servings": 2
+  },
+  {
+    "name": "Vegetable Omelette",
+    "ingredients": ["egg", "tomato", "pepper"],
+    "instructions": "Chop the vegetables, beat the eggs, and cook everything in a pan.",
+    "cooking_time": 10,
+    "category": "Breakfast",
+    "servings": 1
+  },
+  {
+    "name": "Cheese Sandwich",
+    "ingredients": ["bread", "cheese", "tomato"],
+    "instructions": "Place cheese and sliced tomato between bread slices.",
+    "cooking_time": 5,
+    "category": "Snack",
+    "servings": 1
+  }
+
+,
+{
+  "name": "Chicken Salad",
+  "ingredients": ["chicken", "lettuce", "tomato", "cucumber"],
+  "instructions": "Cook the chicken, chop the vegetables, and mix everything in a bowl.",
+  "cooking_time": 20,
+  "category": "Salad",
+  "servings": 2
+},
+{
+  "name": "Garlic Bread",
+  "ingredients": ["bread", "garlic", "butter"],
+  "instructions": "Mix crushed garlic with butter, spread on bread, and bake until golden.",
+  "cooking_time": 10,
+  "category": "Snack",
+  "servings": 2
+},
+{
+  "name": "Pancakes",
+  "ingredients": ["flour", "milk", "egg", "sugar"],
+  "instructions": "Mix all ingredients and cook small portions in a pan until golden.",
+  "cooking_time": 15,
+  "category": "Breakfast",
+  "servings": 2
+},
+{
+  "name": "Vegetable Soup",
+  "ingredients": ["carrot", "potato", "onion", "water"],
+  "instructions": "Chop the vegetables, boil them in water, and cook until soft.",
+  "cooking_time": 30,
+  "category": "Soup",
+  "servings": 4
+},
+{
+  "name": "Chicken Rice",
+  "ingredients": ["chicken", "rice", "onion", "butter"],
+  "instructions": "Cook the chicken and prepare rice with onion and butter.",
+  "cooking_time": 30,
+  "category": "Main Course",
+  "servings": 2
+},
+{
+  "name": "Greek Salad",
+  "ingredients": ["tomato", "cucumber", "olive", "feta cheese"],
+  "instructions": "Chop the vegetables and mix them with olives and feta cheese.",
+  "cooking_time": 10,
+  "category": "Salad",
+  "servings": 2
+},
+{
+  "name": "Mashed Potatoes",
+  "ingredients": ["potato", "milk", "butter", "salt"],
+  "instructions": "Boil the potatoes, mash them, and mix with milk and butter.",
+  "cooking_time": 20,
+  "category": "Side Dish",
+  "servings": 3
+},
+{
+  "name": "Tuna Sandwich",
+  "ingredients": ["bread", "tuna", "mayonnaise", "lettuce"],
+  "instructions": "Mix tuna with mayonnaise and place it between bread slices with lettuce.",
+  "cooking_time": 5,
+  "category": "Lunch",
+  "servings": 1
+},
+{
+  "name": "Mushroom Pasta",
+  "ingredients": ["pasta", "mushroom", "cream", "garlic"],
+  "instructions": "Cook the pasta and prepare a creamy mushroom sauce with garlic.",
+  "cooking_time": 25,
+  "category": "Main Course",
+  "servings": 2
+},
+{
+  "name": "Fruit Salad",
+  "ingredients": ["apple", "banana", "orange", "grapes"],
+  "instructions": "Wash and chop all fruits, then mix them in a bowl.",
+  "cooking_time": 10,
+  "category": "Dessert",
+  "servings": 2
+},
+{
+  "name": "Tomato Soup",
+  "ingredients": ["tomato", "onion", "garlic", "water"],
+  "instructions": "Cook tomatoes with onion and garlic, add water, and blend until smooth.",
+  "cooking_time": 25,
+  "category": "Soup",
+  "servings": 3
+},
+{
+  "name": "Fried Rice",
+  "ingredients": ["rice", "egg", "carrot", "soy sauce"],
+  "instructions": "Cook the rice, fry the vegetables and egg, then mix everything with soy sauce.",
+  "cooking_time": 15,
+  "category": "Main Course",
+  "servings": 2
+},
+{
+  "name": "Baked Potatoes",
+  "ingredients": ["potato", "olive oil", "salt", "pepper"],
+  "instructions": "Cut the potatoes, season with olive oil, salt, and pepper, and bake until tender.",
+  "cooking_time": 40,
+  "category": "Side Dish",
+  "servings": 2
+},
+{
+  "name": "Banana Smoothie",
+  "ingredients": ["banana", "milk", "honey"],
+  "instructions": "Blend the banana, milk, and honey until smooth.",
+  "cooking_time": 5,
+  "category": "Drink",
+  "servings": 1
+},
+{
+  "name": "Lentil Soup",
+  "ingredients": ["lentil", "onion", "carrot", "water"],
+  "instructions": "Boil lentils with chopped onion and carrot until soft, then blend.",
+  "cooking_time": 35,
+  "category": "Soup",
+  "servings": 4
+},
+{
+  "name": "Chicken Wrap",
+  "ingredients": ["chicken", "tortilla", "lettuce", "tomato"],
+  "instructions": "Cook the chicken, place it on a tortilla with vegetables, and roll it up.",
+  "cooking_time": 15,
+  "category": "Lunch",
+  "servings": 1
+}
+
+]
