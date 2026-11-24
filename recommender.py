@@ -24,15 +24,15 @@ RECIPES = [
         "cooking_time": 5
     }
 ]
-def recommend_recipes(user_ingredients, max_cooking_time = None):
+def recommend_recipes(user_ingredients, max_cooking_time = None, recipes = None):
 
     if not isinstance(user_ingredients, (list, tuple, set)):
         return[]
 
-    if not isinstance(max_cooking_time, (int, float)):
-        return[]
-
     if max_cooking_time is not None:
+        if isinstance(max_cooking_time, bool):
+            return []
+        
         if not isinstance(max_cooking_time, (int, float)):
             return[]
 
@@ -48,9 +48,15 @@ def recommend_recipes(user_ingredients, max_cooking_time = None):
     if not user_ingredients:
         return[]
 
+    if recipes is None:
+        recipes = RECIPES
+
+    if not isinstance(recipes, (list, tuple)):
+        return[]
+
     recommendations = []
 
-    for recipe in RECIPES:
+    for recipe in recipes:
 
         if max_cooking_time is not None:
             if recipe["cooking_time"] > max_cooking_time:
@@ -80,11 +86,27 @@ def recommend_recipes(user_ingredients, max_cooking_time = None):
                 "is_complete": len(missing_ingredients) == 0
             })
 
+    cooking_time = [recipe["cooking_time"] for recipe in recipes]
+
+    min_time = min(cooking_time)
+    max_time = max(cooking_time)
+
+    for recipe in recommendations:
+
+        if max_time == min_time:
+            time_score = 100
+        else:
+            time_score = ((max_time - recipe["cooking_time"]) / (max_time - min_time)) * 100
+
+        recommendation_score = (recipe["match_percentage"] * 0.8 + time_score * 0.2)
+
+        recipe["time_score"] = round(time_score, 2)
+        recipe["recommendation_score"] = round(recommendation_score, 2)
+
     recommendations.sort(
         key = lambda recipe: (
-            -recipe["match_count"],
+            -recipe["recommendation_score"],
             -recipe["match_percentage"],
-            len(recipe["missing_ingredients"]),
             recipe["cooking_time"]
         )
     )
@@ -92,14 +114,28 @@ def recommend_recipes(user_ingredients, max_cooking_time = None):
     return recommendations
 
 if __name__ == "__main__":
-    test_ingredients = ["egg", 123, None, "cheese", "", "  "]
 
-    result = recommend_recipes(test_ingredients, max_cooking_time = True)
+    test_recipes = [
+        {
+            "name": "Test Omelette",
+            "ingredients": ["egg", "cheese"],
+            "cooking_time": 10
+        },
+        {
+            "name": "Test Pasta",
+            "ingredients": ["pasta", "tomato", "cheese", "egg"],
+            "cooking_time": 10
+        }
+    ]
+
+    result = recommend_recipes(
+        ["egg", "cheese"],
+        recipes=test_recipes
+    )
 
     for recipe in result:
         print(f"Recipe: {recipe['name']}")
         print(f"Match: {recipe['match_percentage']}%")
-        print(f"Matching ingredients: {recipe['matching_ingredients']}")
-        print(f"Missing ingredients: {recipe['missing_ingredients']}")
-        print(f"Can cook now: {recipe['is_complete']}")
+        print(f"Time Score: {recipe['time_score']}")
+        print(f"Recommendation Score: "f"{recipe['recommendation_score']}")
         print("-" * 30)
