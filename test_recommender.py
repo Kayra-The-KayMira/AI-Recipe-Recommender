@@ -2,7 +2,7 @@
 import unittest
 
 from recommender import recommend_recipes
-
+from embedding_recommender import calculate_recipe_similarity
 
 class TestRecommendRecipes(unittest.TestCase):
 
@@ -86,6 +86,31 @@ class TestRecommendRecipes(unittest.TestCase):
         )
 
         self.assertEqual(result, [])
+
+    def test_ai_enabled(self):
+        result = recommend_recipes(
+            ["egg", "cheese"],
+            recipes=self.recipes,
+            use_ai=True
+        )
+
+        self.assertTrue(len(result) > 0)
+
+        for recipe in result:
+            self.assertIn("ai_score", recipe)
+            self.assertIn("recommendation_score", recipe)
+
+    def test_ai_disabled(self):
+        result = recommend_recipes(
+            ["egg", "cheese"],
+            recipes=self.recipes,
+            use_ai=False
+        )
+
+        self.assertTrue(len(result) > 0)
+
+        for recipe in result:
+            self.assertEqual(recipe["ai_score"], 0)
 
 
 if __name__ == "__main__":

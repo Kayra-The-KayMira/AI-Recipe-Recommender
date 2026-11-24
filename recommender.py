@@ -1,3 +1,4 @@
+from embedding_recommender import calculate_recipe_similarity
 RECIPES = [
     {
         "name": "Cheese Omlette",
@@ -24,7 +25,7 @@ RECIPES = [
         "cooking_time": 5
     }
 ]
-def recommend_recipes(user_ingredients, max_cooking_time = None, recipes = None):
+def recommend_recipes(user_ingredients, max_cooking_time = None, recipes = None, use_ai = True):
 
     if not isinstance(user_ingredients, (list, tuple, set)):
         return[]
@@ -106,7 +107,14 @@ def recommend_recipes(user_ingredients, max_cooking_time = None, recipes = None)
 
         recommendation_score = (recipe["match_percentage"] * 0.8 + time_score * 0.2)
 
+        ai_score = 0
+
+        if use_ai:
+            ai_similarity = calculate_recipe_similarity(user_ingredients, recipe)
+            ai_score = max(0, ai_similarity * 100)
+
         recipe["time_score"] = round(time_score, 2)
+        recipe["ai_score"] = round(ai_score, 2)
         recipe["recommendation_score"] = round(recommendation_score, 2)
 
     recommendations.sort(
