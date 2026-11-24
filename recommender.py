@@ -54,6 +54,9 @@ def recommend_recipes(user_ingredients, max_cooking_time = None, recipes = None)
     if not isinstance(recipes, (list, tuple)):
         return[]
 
+    if not recipes:
+        return[]
+
     recommendations = []
 
     for recipe in recipes:
@@ -66,6 +69,9 @@ def recommend_recipes(user_ingredients, max_cooking_time = None, recipes = None)
             ingredient.strip().lower()
             for ingredient in recipe['ingredients']
         }
+
+        if not recipe_ingredients:
+            continue
 
         matching_ingredients = user_ingredients.intersection(
             recipe_ingredients
@@ -112,30 +118,3 @@ def recommend_recipes(user_ingredients, max_cooking_time = None, recipes = None)
     )
 
     return recommendations
-
-if __name__ == "__main__":
-
-    test_recipes = [
-        {
-            "name": "Test Omelette",
-            "ingredients": ["egg", "cheese"],
-            "cooking_time": 10
-        },
-        {
-            "name": "Test Pasta",
-            "ingredients": ["pasta", "tomato", "cheese", "egg"],
-            "cooking_time": 10
-        }
-    ]
-
-    result = recommend_recipes(
-        ["egg", "cheese"],
-        recipes=test_recipes
-    )
-
-    for recipe in result:
-        print(f"Recipe: {recipe['name']}")
-        print(f"Match: {recipe['match_percentage']}%")
-        print(f"Time Score: {recipe['time_score']}")
-        print(f"Recommendation Score: "f"{recipe['recommendation_score']}")
-        print("-" * 30)
